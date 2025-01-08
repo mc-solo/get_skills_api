@@ -11,19 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grades', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->decimal('score');
+            $table->string('assignment_name');
+            $table->text('description')->nullable();
+            $table->dateTime('due_date');
+            $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->foreignID('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignID('course_id')->constrained('courses')->cascadeOnDelete();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations()
      */
     public function down(): void
     {
-        Schema::dropIfExists('grades');
+        Schema::dropIfExists('assignments');
     }
 };
