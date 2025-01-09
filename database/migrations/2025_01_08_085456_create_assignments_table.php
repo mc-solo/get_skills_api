@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->dateTime('due_date');
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
-            $table->foreignID('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('instructor_id')->constrained('users')->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 
