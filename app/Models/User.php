@@ -50,8 +50,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+// table_relations
+    public function roles(){
+        return $this->hasOne(Role::class);
+    }
+
+
+    public function uploads(){
+        return $this->hasMany(Upload::class);
+    }
+
+    public function assignments(){
+        return $this->hasMany(Assignment::class);
+    }
 
     public function orders(){
         return $this->hasMany(Order::class);
     }
+
+
 }
