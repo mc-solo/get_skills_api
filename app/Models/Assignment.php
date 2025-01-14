@@ -15,6 +15,20 @@ class Assignment extends Model
     'due_date',
     'course_id',
     'instructor_id'];
+
+
+    // table_relations
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+    public function uploads(){
+        return $this->hasMany(Upload::class);
+    }
+
+    public function courses(){
+        return $this->belongsTo(Course::class);
+    }
+
 }
 
-// todo:Relationship definitions
+
