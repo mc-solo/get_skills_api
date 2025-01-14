@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('uploads', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignID('course_id')->constrained('courses')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->string('file_path');
             $table->string('file_name');
             $table->string('file_type');
-            $table->timestamp('upload date')->useCurrent();
+            $table->timestamp('upload_date')->useCurrent();
             $table->text('description')->nullable();
             $table->timestamps();
 
