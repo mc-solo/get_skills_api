@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
 {
+    
     use HasFactory;
     protected $fillable = ['role', 'description'];
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }
