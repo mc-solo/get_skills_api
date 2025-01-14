@@ -51,6 +51,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function roles(){
+        return $this->hasOne(Role::class);
+    }
+
     public function orders(){
         return $this->hasMany(Order::class);
     }

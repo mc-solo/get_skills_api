@@ -8,4 +8,8 @@ class Course extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'description'];
+
+    public function classrooms() {
+        return $this->belongsTo(Classroom::class);
+    }
 }
