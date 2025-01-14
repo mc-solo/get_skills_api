@@ -9,4 +9,6 @@ class Classroom extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'max_capacity'];
+
+    protected $table = 'classrooms';
 }
