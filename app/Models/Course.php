@@ -12,4 +12,9 @@ class Course extends Model
     public function classrooms() {
         return $this->belongsTo(Classroom::class);
     }
+
+    public function classrooms2()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_courses');
+    }
 }

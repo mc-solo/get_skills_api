@@ -13,8 +13,12 @@ class Classroom extends Model
   
     protected $table = 'classrooms';
 
-
     public function courses(){
         return $this->hasMany(Course::class);
+    }
+
+    public function courses2()
+    {
+        return $this->belongsToMany(Course::class, 'classroom_courses');
     }
 }
