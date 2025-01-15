@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Styles / Scripts -->
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @endif
+</head>
+<body>
+    {{-- Header Area --}}
+    <header>
+        <nav aria-label="main navigation" class="bg-black text-gray-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                {{-- Actual Container --}}
+                <div class="flex items-center justify-between h-20">
+                    {{-- Logo Part --}}
+                    <div class="flex items-center">
+                        <a href="#" class="text-3xl font-bold">Logo</a>
+                    </div>
+
+                    {{-- Desktop Menu --}}
+                    <div class="hidden md:flex space-x-4">
+                        <a href="#about" class="text-2xl hover:text-white">About</a>
+                        <a href="#contact" class="text-2xl hover:text-white">Contact</a>
+                        <a href="#services" class="text-2xl hover:text-white">Services</a>
+                    </div>
+
+                    {{-- Mobile Hamburger Menu --}}
+                    <div class="md:hidden flex items-center">
+                        <button id="menu-toggle" class="menu-toggle text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                              </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Mobile Menu --}}
+            <div id="mobile-menu" class="hidden md:hidden">
+                <a href="#home" class="block px-4 py-2 hover:bg-white">Home</a>
+                <a href="#about" class="block px-4 py-2 hover:bg-white">About</a>
+                <a href="#services" class="block px-4 py-2 hover:bg-white">Services</a>
+            </div>
+        </nav>
+
+        {{-- Js to enable the toggle function --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.getElementById('menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            });
+        </script>
+    </header>
+</body>
+
+</html>
