@@ -17,10 +17,11 @@
 
     @endif
 </head>
+
 <body>
     {{-- Header Area --}}
-    <header>
-        <nav aria-label="main navigation" class="bg-black text-gray-300">
+    <header class="fixed top-0 left-0 w-full z-50">
+        <nav aria-label="main navigation" class="bg-gray-900 bg-opacity-75 backdrop-blur-md text-gray-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {{-- Actual Container --}}
@@ -39,10 +40,13 @@
 
                     {{-- Mobile Hamburger Menu --}}
                     <div class="md:hidden flex items-center">
-                        <button id="menu-toggle" class="menu-toggle text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                              </svg>
+                        <button id="menu-toggle"
+                            class="menu-toggle text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -68,6 +72,68 @@
             });
         </script>
     </header>
+
+    {{-- landing page with gradient --}}
+    <div class="min-h-screen bg-gradient-to-tr from-gray-900 to-gray-800 flex items-center justify-center">
+        <div class="text-center text-white">
+            <h1 class="text-4xl font-bold mb-4 animate-slide-in-right">Welcome to My Landing Page</h1>
+            <p class="text-lg mb-8 animate-slide-in-left">Discover amazing content and get started on your journey with
+                us.</p>
+            <a href="#"
+                class="px-6 py-3 bg-gray-800 text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-gray-700 transition ease-in-out duration-300">
+                Get Started
+            </a>
+        </div>
+    </div>
+
+
+    <div class="min-h-screen bg-gradient-to-tr from-gray-500 to-gray-400 flex items-center justify-center">
+        <div class="text-center text-white">
+            <h1 class="text-4xl font-bold mb-4">Welcome to My Landing Page</h1>
+            <p class="text-lg mb-8">Discover amazing content and get started on your journey with
+                us.</p>
+            <a href="#"
+                class="px-6 py-3 bg-gray-800 text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-gray-700 transition ease-in-out duration-300">
+                Get Started
+            </a>
+        </div>
+    </div>
+
+    {{-- animation effects where they slide in from the right and left --}}
+    <style>
+        @keyframes slide-in-right {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in-left {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-in-right {
+            animation: slide-in-right 2s ease-in-out;
+        }
+
+        .animate-slide-in-left {
+            animation: slide-in-left 2s ease-in-out;
+        }
+    </style>
+
 </body>
 
 </html>
