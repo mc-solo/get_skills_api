@@ -10,6 +10,6 @@ class Parent_Info extends Model
     protected $fillable = ['name', email, phone_number];
 
     public function users(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
