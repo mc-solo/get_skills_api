@@ -55,7 +55,9 @@ class User extends Authenticatable
         return $this->hasOne(Role::class);
     }
 
-
+    public function parents_info(){
+        return $this->belongsTo(Parent_Info::class);
+    }
     public function uploads(){
         return $this->hasMany(Upload::class);
     }
