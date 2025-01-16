@@ -33,15 +33,15 @@
 
                     {{-- Desktop Menu --}}
                     <div class="hidden md:flex space-x-4">
-                        <a href="#about" class="text-2xl hover:text-white">About</a>
-                        <a href="#contact" class="text-2xl hover:text-white">Contact</a>
-                        <a href="#services" class="text-2xl hover:text-white">Services</a>
+                        <a href="#about" class="text-2xl hover:text-[#0ea6e9]">About</a>
+                        <a href="#contact" class="text-2xl hover:text-[#0ea6e9]">Contact</a>
+                        <a href="#services" class="text-2xl hover:text-[#0ea6e9]">Services</a>
                     </div>
 
                     {{-- Mobile Hamburger Menu --}}
                     <div class="md:hidden flex items-center">
                         <button id="menu-toggle"
-                            class="menu-toggle text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                            class="menu-toggle text-gray-300 hover:text-[#0ea6e9] focus:outline-none focus:ring-2 focus:ring-white">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -74,13 +74,13 @@
     </header>
 
     {{-- landing page with gradient --}}
-    <div class="min-h-screen bg-gradient-to-tr from-gray-900 to-gray-800 flex items-center justify-center">
+    <div class="min-h-screen bg-gradient-to-tr from-[#0b1121] to-[#2b2a78] flex items-center justify-center">
         <div class="text-center text-white">
             <h1 class="text-4xl font-bold mb-4 animate-slide-in-right">Welcome to My Landing Page</h1>
             <p class="text-lg mb-8 animate-slide-in-left">Discover amazing content and get started on your journey with
                 us.</p>
             <a href="#"
-                class="px-6 py-3 bg-gray-800 text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-gray-700 transition ease-in-out duration-300">
+                class="px-6 py-3 bg-[#0ea6e9] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-gray-700 transition ease-in-out duration-300">
                 Get Started
             </a>
         </div>
