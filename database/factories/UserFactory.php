@@ -34,7 +34,6 @@ class UserFactory extends Factory
             'department' => $this->faker->randomElement(['Math', 'Science', 'History', 'English', 'Computer Science']), 
             'address' => $this->faker->address(), 
             'hire_date' => $this->faker->date('Y-m-d', '-2 years'), 
-            'role_id' => Role::inRandomOrder()->first()->id, // Randomly assign an existing role
         ];
     }
 
