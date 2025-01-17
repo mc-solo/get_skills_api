@@ -54,7 +54,7 @@
 
             {{-- Mobile Menu --}}
             <div id="mobile-menu" class="hidden md:hidden">
-                <a href="#home" class="block px-4 py-2 hover:bg-white">Home</a>
+                <a href="#home" class="block px-4 py-2 hover:bg-white">Dashboard</a>
                 <a href="#about" class="block px-4 py-2 hover:bg-white">About</a>
                 <a href="#services" class="block px-4 py-2 hover:bg-white">Services</a>
             </div>

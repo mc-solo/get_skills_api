@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('role')->default(1)->constrained('roles')->cascadeOnDelete();
             $table->date('date_of_birth')->nullable();  
             $table->string('department')->nullable();
             $table->string('address')->nullable();
@@ -26,12 +26,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role_id');
-            $table->dropColumn('role_permissions_id');
-            $table->dropColumn('Date of birth');
-            $table->dropColumn('Department');
-            $table->dropColumn('Address');
-            $table->dropColumn('Hire date');
+            $table->dropForeign(['role']);
+            $table->dropColumn('date_of_birth');
+            $table->dropColumn('department');
+            $table->dropColumn('address');
+            $table->dropColumn('hire_date');
         });
     }
 };
