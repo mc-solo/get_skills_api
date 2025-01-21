@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'phone_number' => ['required', 'string', 'regex:/^\+?[0-9]{10,15}$/'],
             'gender'=> ['required', 'string', 'in:male,female,other'],
             'date_of_birth'=>['required', 'date', 'before:today'],
             'educational_level'=>['required', 'string', 'in:high_school,bachelor,master,phd'],
@@ -41,6 +42,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone_number'=> $request->phone_number,
             'gender'=> $request->gender,
             'date_of_birth'=>$request->date_of_birth,
             'educational_level'=>$request->educational_level,
