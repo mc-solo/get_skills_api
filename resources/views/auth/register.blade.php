@@ -15,6 +15,45 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        
+        <!-- Phone Number -->
+        <div class="mt-4">
+            <x-input-label for="phone_number" :value="__('Phone Number')" />
+            <x-text-input id="phone_number" class="block mt-1 w-full" type="tel" name="phone_number" :value="old('phone_number')" required />
+            <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
+        </div>
+
+        <!-- Gender -->
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('Gender')"/>
+            <select id="gender" name="gender" class="block mt-1 w-full">
+                <option value="" selected disabled>-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2"/>
+        </div>
+
+        <!-- Date of birth -->
+        <div class="mt-4">
+            <x-input-label for="date_of_birth" :value="__('Date of Birth')" />
+            <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth" :value="old('date_of_birth')" required />
+            <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
+        </div>
+
+        <!-- Educational Level -->
+        <div class="mt-4">
+            <x-input-label for="educational_level" :value="__('Educational Level')" />
+            <select id="educational_level" name="educational_level" class="block mt-1 w-full" required>
+                <option value="" selected disabled>-- Select Educational Level --</option>
+                <option value="high_school">High School</option>
+                <option value="bachelor">Bachelor’s Degree</option>
+                <option value="master">Master’s Degree</option>
+                <option value="phd">PhD</option>
+            </select>
+            <x-input-error :messages="$errors->get('educational_level')" class="mt-2" />
+        </div>
 
         <!-- Password -->
         <div class="mt-4">
