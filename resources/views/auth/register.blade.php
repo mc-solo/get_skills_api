@@ -16,6 +16,18 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+         <!-- Gender -->
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('Gender')"/>
+            <select id="gender" name="gender" class="block mt-1 w-full">
+                <option value="" selected disabled>-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2"/>
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
