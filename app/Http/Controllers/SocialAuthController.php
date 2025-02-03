@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class SocialAuthController extends Controller
 {
 
-    // redirect user to google
+    // Google OAuth
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -20,23 +20,36 @@ class SocialAuthController extends Controller
     // handle google callback
     public function handleGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->user();
+        $googleUser = Socialite::driver('google')->stateless()->user();
+        // dd($googleUser);
+        try {
+            $googleUser = Socialite::driver('google')->user();
 
-        $user = User::updateOrCreate(
-            [
-                'provider' => 'google',
-                'provider_id'=>$googleUser->id,
-            ],
-            [
-                'name' => $googleUser->getName(),
-                'provider_id' => $googleUser->getId(),
-                'avatar' => $googleUser->getAvatar(),
-                'password' => bcrypt(Str::random(8)),
-            ]
-        );
+            $user = User::where('email', $googleUser->email)->first();
+            if ($user) {
+                $user->update([
+                    'provider' => 'google',
+                    'provider_id' => $googleUser->id,
+                    'avatar' => $googleUser->avatar,
+                ]);
+            } else {
+                $user = User::create([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'provider' => 'google',
+                    'provider_id' => $googleUser->id,
+                    'password' => bcrypt(Str::random(8)),
 
-        Auth::login($user);
-        return redirect()->intended('/dashboard');
+                ]);
+            }
+
+            Auth::login($user);
+            return redirect()->intended('/dashboard');
+
+        } catch (\Exception $e) {
+            // return redirect ('/login')->with('error', $e->getMessage());
+            dd($e->getMessage());
+        } 
     }
 
 }
