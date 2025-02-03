@@ -44,4 +44,8 @@
             </x-primary-button>
         </div>
     </form>
+    <x-primary-button>
+        <a href="{{url('/auth/google')}}">use Google</a>
+    </x-primary-button>
+
 </x-guest-layout>
