@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialAuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/auth/google', [SocialAuthController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback',[SocialAuthController::class, 'handleGoogleCallback']);
 require __DIR__.'/auth.php';
