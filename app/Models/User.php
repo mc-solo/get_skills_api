@@ -73,5 +73,25 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function courses(){
+        return $this->hasMany(Course::class);
+    }
+
+    public function lessons() {
+        return $this->hasMany(Lesson::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function enrollments() {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function coursesEnrolled() {
+        return $this->belongsToMany(Course::class, 'enrollments')->withPivot('progress', 'completed');
+    }
+
 
 }
