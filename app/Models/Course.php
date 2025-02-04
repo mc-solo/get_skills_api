@@ -18,9 +18,8 @@ class Course extends Model
         'duration',
     ];
 
-    public function classrooms()
-    {
-        return $this->belongsTo(Classroom::class);
+    public function student() {
+        return $this->belongsToMany(User::class, 'enrollments')->withPivot('progress', 'completed');
     }
 
     public function classrooms2()

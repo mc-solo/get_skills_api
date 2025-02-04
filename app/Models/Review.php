@@ -12,4 +12,12 @@ class Review extends Model
         'rating',
         'review_text',
     ];
+
+    public function student(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function course(){
+        return $this->belongsTo(Course::class);
+    }
 }
