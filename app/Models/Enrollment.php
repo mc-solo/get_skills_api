@@ -12,4 +12,15 @@ class Enrollment extends Model
         'progress',
         'completed',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function courses(){
+        return $this->belongsTo(Course::class);
+    }
+
+    
 }
+
