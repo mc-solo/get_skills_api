@@ -27,4 +27,20 @@ class Course extends Model
     {
         return $this->belongsToMany(Classroom::class, 'classroom_courses');
     }
+
+    public function instructor() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function lessons(){
+        return $this->hasMany(Lesson::class);
+    }
+
+    public function enrollments(){
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }
