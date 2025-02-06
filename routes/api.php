@@ -1,8 +1,10 @@
-<?php 
+<?php
 
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialAuthController;
+use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'web'])->group(function(){
-    Route::get('/courses', [CourseController::class, 'index']);
-    Route::post('/courses', [CourseController::class, 'store']);
+// Public route for testing API
+Route::get('/', function () {
+    return response()->json(['message' => 'Welcome to the API']);
 });
