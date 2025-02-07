@@ -19,6 +19,11 @@ class Course extends Model
         'tags',
     ];
 
+
+    protected $casts = [
+        'tags'=> 'array', //notes for Emmanuel: converts them tags into arrays
+    ];
+
     public function student() {
         return $this->belongsToMany(User::class, 'enrollments')->withPivot('progress', 'completed');
     }
