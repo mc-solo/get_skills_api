@@ -15,23 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed roles
-       $this->call(RolesTabSeeder::class);
-       
-        // Seed users
-        // User::factory(10)->create();
-
-        // Seed courses
-        // Course::factory(10)->create();
-
-        // Seed assignments
-        // Assignment::factory(10)->create();
-
-        // Create a specific test user
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        //     'role_id' => Role::where('Role', 'Admin')->first()->id, // Assign Admin role
-        // ]);
+       $this->call([
+        UserSeeder::class,
+        CourseSeeder::class,
+       ]);
     }
 }

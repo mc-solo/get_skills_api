@@ -30,10 +30,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(), 
             'password' => static::$password ??= Hash::make('password'), // Default password
             'remember_token' => Str::random(10), 
-            'date_of_birth' => $this->faker->date('Y-m-d', '-18 years'), 
-            'department' => $this->faker->randomElement(['Math', 'Science', 'History', 'English', 'Computer Science']), 
-            'address' => $this->faker->address(), 
-            'hire_date' => $this->faker->date('Y-m-d', '-2 years'), 
+            
         ];
     }
 
