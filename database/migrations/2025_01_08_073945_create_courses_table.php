@@ -17,10 +17,11 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('instructor_id')->constrained('users')->cascadeOnDelete();
             $table->string('thumbnail')->nullable();
-            $table->decimal('price', 10,2)->nullable(); // can be a free course :)
+            $table->decimal('price', 10,2)->default(0);
             $table->enum('level', ['beginner', 'intermediate', 'advanced', ])->default('beginner');
             $table->text('requirements')->nullable();
-            $table->integer('duration')->nullable();
+            $table->string('video_url')->nullable();
+            $table->json('tags')->nullable();
             $table->timestamps();
         });
     }
