@@ -15,17 +15,20 @@ class Course extends Model
         'price',
         'level',
         'requirements',
-        'duration',
+        'video_url',
+        'tags',
+    ];
+
+
+    protected $casts = [
+        'tags'=> 'array', //notes for Emmanuel: converts them tags into arrays
     ];
 
     public function student() {
         return $this->belongsToMany(User::class, 'enrollments')->withPivot('progress', 'completed');
     }
 
-    public function classrooms2()
-    {
-        return $this->belongsToMany(Classroom::class, 'classroom_courses');
-    }
+   
 
     public function instructor() {
         return $this->belongsTo(User::class);
@@ -33,10 +36,6 @@ class Course extends Model
 
     public function lessons(){
         return $this->hasMany(Lesson::class);
-    }
-
-    public function enrollments(){
-        return $this->hasMany(Enrollment::class);
     }
 
     public function reviews(){
