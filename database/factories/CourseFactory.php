@@ -22,7 +22,7 @@ class CourseFactory extends Factory
         return [
             'title'=>$this->faker->sentence(),
             'description'=>$this->faker->paragraph(2),
-            'instructor_id'=>User::inRandomOrder()?->id ?? User::factory(),
+            'instructor_id'=>User::inRandomOrder()?->value('id') ?? User::factory(),
             'thumbnail'=>$this->faker->imageUrl(),
             'price'=>$this->faker->numberBetween(100,10000),
             'level'=>$this->faker->randomElement(['beginner', 'intermediate', 'advanced']),
