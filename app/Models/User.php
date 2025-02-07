@@ -59,20 +59,6 @@ class User extends Authenticatable
         return $this->hasOne(Role::class);
     }
 
-    public function parents_info(){
-        return $this->belongsTo(Parent_Info::class);
-    }
-    public function uploads(){
-        return $this->hasMany(Upload::class);
-    }
-
-    public function assignments(){
-        return $this->hasMany(Assignment::class);
-    }
-
-    public function orders(){
-        return $this->hasMany(Order::class);
-    }
 
     public function courses(){
         return $this->hasMany(Course::class);
@@ -84,14 +70,6 @@ class User extends Authenticatable
 
     public function reviews(){
         return $this->hasMany(Review::class);
-    }
-
-    public function enrollments() {
-        return $this->hasMany(Enrollment::class);
-    }
-
-    public function coursesEnrolled() {
-        return $this->belongsToMany(Course::class, 'enrollments')->withPivot('progress', 'completed');
     }
 
 
