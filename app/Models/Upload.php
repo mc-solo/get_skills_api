@@ -10,13 +10,13 @@ class Upload extends Model
     /** @use HasFactory<\Database\Factories\UploadFactory> */
     use HasFactory;
 
-    protected $table = 'uploads';
+    // protected $table = 'uploads';
     protected $fillable = [
         'course_id',
         'title',
-        'content',
-        'video_url',
-        'attachement',
+        'description',
+        'file_path',
+        'file_name',
     ];
 
     public function course() {
