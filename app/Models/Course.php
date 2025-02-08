@@ -41,4 +41,8 @@ class Course extends Model
     public function reviews(){
         return $this->hasMany(Review::class);
     }
+
+    public function uploads(){
+        return $this->hasMany(Upload::class);
+    }
 }
