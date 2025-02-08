@@ -64,9 +64,9 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-    public function lessons() {
-        return $this->hasMany(Lesson::class);
-    }
+    // public function lessons() {
+    //     return $this->hasMany(Lesson::class);
+    // }
 
     public function reviews(){
         return $this->hasMany(Review::class);
