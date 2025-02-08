@@ -17,7 +17,7 @@ class UploadFactory extends Factory
      * @return array<string, mixed>
      */
 
-     protected $model = Upload::class;
+    //  protected $model = Upload::class;
     public function definition(): array
     {
         return [
