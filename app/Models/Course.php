@@ -34,11 +34,15 @@ class Course extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function lessons(){
-        return $this->hasMany(Lesson::class);
-    }
+    // public function lessons(){
+    //     return $this->hasMany(Lesson::class);
+    // }
 
     public function reviews(){
         return $this->hasMany(Review::class);
+    }
+
+    public function uploads(){
+        return $this->hasMany(Upload::class);
     }
 }
