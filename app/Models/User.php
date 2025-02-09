@@ -55,9 +55,9 @@ class User extends Authenticatable
         ];
     }
 // table_relations
-    public function roles(){
-        return $this->hasOne(Role::class);
-    }
+    // public function roles(){
+    //     return $this->hasOne(Role::class);
+    // }
 
 
     public function courses(){
