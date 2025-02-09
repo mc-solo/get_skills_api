@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Review;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
@@ -16,7 +17,7 @@ class ReviewFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = \App\Models\Review::class;
+    // protected $model = \App\Models\Review::class;
     public function definition(): array
     {
 
