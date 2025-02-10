@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Resources\Api\V1\ReviewResource;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,16 +15,14 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return Review::with('User:id, name')->pageinate(5);
+    public function index(){
+        return Review::with('User:id, name')->paginate(5);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ReviewRequest $request)
-    {
+    public function store(ReviewRequest $request){
         
         $review = Review::create([
             'user_id' => auth()->id(),
@@ -32,17 +31,14 @@ class ReviewController extends Controller
             'comment' => $request->comment ?? null,
         ]);
 
-        return response()->json($review, Res::HTTP_CREATED);
+        return new ReviewResource($review);
     }
-
-
-
+ 
     /**
      * Display the specified resource.
      */
-    public function show(Review $review )
-    {
-        return $review->load('user:id,name');   
+    public function show(Review $review ){
+        return new ReviewResource($review);
     }
 
     /**
