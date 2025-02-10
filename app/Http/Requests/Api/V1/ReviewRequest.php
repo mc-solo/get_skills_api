@@ -24,7 +24,7 @@ class ReviewRequest extends FormRequest
         return [
             'course_id' => 'required|exists:courses,id',
             'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string|max:1000',
+            'comment' => 'nullable|string|max:300',
         ];
     }
 }
