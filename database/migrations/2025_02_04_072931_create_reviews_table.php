@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->integer('rating')->check('rating BETWEEN 1 AND 5');
-            $table->text('review_text')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
