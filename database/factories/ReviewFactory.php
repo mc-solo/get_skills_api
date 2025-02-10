@@ -25,7 +25,7 @@ class ReviewFactory extends Factory
             'user_id' =>User::query()->inRandomOrder()->value('id') ?? User::factory(),
             'course_id' => Course::query()->inRandomOrder()->value('id') ?? Course::factory(),
             'rating' => $this->faker->numberBetween(1, 5),
-            'review_text' => $this->faker->optional()->realText(),
+            'comment' => $this->faker->realText(50),
         ];
     }
 }
