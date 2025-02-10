@@ -16,7 +16,7 @@ class ReviewController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-        return Review::with('User:id, name')->paginate(5);
+        return ReviewResource::collection(Review::with(['user:id,name', 'course:id'])->get());
     }
 
     /**
