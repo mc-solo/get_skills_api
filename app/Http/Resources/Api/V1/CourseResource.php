@@ -24,6 +24,16 @@ class CourseResource extends JsonResource
             'requirements' => $this->requirements,
             'video_url' => $this->video_url,
             'tags' => $this->tags,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+
+            // Notes for Emmanuel: I added this line of code below to include details only if the instructor relationship is loaded
+            'instructor' => $this->whenLoaded('instructor', function(){
+                return [
+                    'id' => $this->instructor->id,
+                    'name' => $this->instructor->name,
+                ];
+            }),
         ];
     }
 }
