@@ -23,7 +23,8 @@ class ReviewResource extends JsonResource
             ],
             'course' => $this->course->id,
             'rating' => $this->rating,
-            'created_at' => $this->created_at->toDateTimeString(),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }
