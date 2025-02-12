@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->decimal('progress', 5, 2)->default(0.00);
             $table->boolean('is_completed')->default(false); //just to know if the course is finished
-            $table->enum('payment_status', ['pending', 'approved', 'declined'])->default('pending');
+            $table->enum('payment_status', ['pending', 'approved', 'declined', 'free'])->default('pending');
             $table->string('transaction_id')->nullable();
 
             $table->timestamps();
