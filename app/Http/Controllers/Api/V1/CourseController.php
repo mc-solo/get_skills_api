@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\V1\CourseResource;
 
 class CourseController extends Controller
 {
@@ -14,34 +16,48 @@ class CourseController extends Controller
     * fetches all the courses along with instrcutor[Eager load] and converts it into json format
     */
     public function index(){
-        return response()->json(Course::with('instructor')->get());
+        $courses = Course::with('instructor:id,name')->get();
+        return CourseResource::collection($courses);
     }
 
-    // validation for the course creation request
-    public function store(Request $request){
-        $request->validate([
-            'title'=> 'required | string | 255',
-            'description'=> 'required | string',
-            'price' => 'nullable | numeric| min:0',
-            'level'=> 'required |in:beginner , intermidiate, advanced',
-            'thumbnail'=>'nullable | string',
-        ]);
-
-        // creates the course in our db
+    public function store(CourseRequest $request){
+      
         $course = Course::create([
             'instructor_id' => auth()->id(),
             'title'=>$request->title,
             'description'=> $request->description,
+            'thumbnail' => $request->thumbnail,
             'price'=>$request->price,
             'level'=>$request->level,
-            'thumbnail'=> $request->thumbnail,
-
+            'requirements'=>$request->requirements,
+            'video_url'=>$request->video_url,
+            'tags'=>$request->tags,
         ]);
 
-        return response()->json([
-            'message'=>'Course created successfully',
-            'course'=>$course,
-        ]);
+        return new CourseResource($course);
 
+    }
+
+    public function show(Course $course) {
+        $course->load('instructor:id,name');
+        return new CourseResource($course);
+    }
+
+    public function update(CourseRequest $request, Course $course) {
+        if($course->instructor_id !== auth()->id()){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $course->update($request->validated());
+        return new CourseResource($course);
+    }
+
+    public function destroy(Course $course) {
+        if($course->instructor_id !== auth()->id()){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $course->delete();
+        return response()->json(['message' => 'Course deleted successfully'], 200);
     }
 }
