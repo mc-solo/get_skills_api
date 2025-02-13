@@ -17,6 +17,7 @@ class Transaction extends Model
         'phone_number',
         'email',
         'tx_ref',
+        'amount',
         'currency',
     ];
     
