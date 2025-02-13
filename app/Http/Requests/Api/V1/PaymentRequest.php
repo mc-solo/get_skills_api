@@ -21,14 +21,15 @@ class PaymentRequest extends FormRequest
      */
     public function rules(): array
     {
+        $tx_ref = 'negade-'.uniqid();
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
             'email' => 'required|email|255',
-            'tx_ref' => 'required|string|unique:transactions,column,tx_ref',
             'currency' => 'required|string|max:3',
             'status' => 'pending',
+            'tx_ref' => $tx_ref,
         ];
     }
 }
