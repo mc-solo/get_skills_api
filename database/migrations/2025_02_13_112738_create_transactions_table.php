@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table->string('tx_ref');
+            $table->decimal('amount', 10, 2);
             $table->string('currency')->default('ETB');
             $table->enum('status', ['pending', 'successful', 'failed'])->default('pending');
             $table->timestamps();
