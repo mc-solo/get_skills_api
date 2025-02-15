@@ -24,7 +24,7 @@ class TransactionController extends Controller
             'email'=>$request->email,
             'tx_ref'=>$request->tx_ref,
             'currency'=>$request->currency,
-            'status'=>$request->status,
+            'status'=>'pending',
         ]);
 
         
