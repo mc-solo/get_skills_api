@@ -6,5 +6,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/index', function (){
-    return view('index');
+    return response()->json([
+        'purpose' => 'backend api',
+        'version' => 'V1',
+        'author' => ['
+            "Name" => "Wondwosen Asegid",
+            "Email" => "wondswosen.asegid@gmail.com",
+            "Phone" => "+251911563689",
+            "Github" => "mc-solo"
+        ']
+
+]);
 });
