@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
 
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -20,27 +21,25 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-
         $validated['password'] = Hash::make($validated['password']);
+        // dd($validated );
 
-        // todo: debug why this is not working
+        $user = User::create($validated);
 
-        // DB::table('users')->insert($validated);
-        $user = new User($validated);
-        $user->save();
-
-        if(!$user) {
-            return response()->json(['error'=>'User not created'], 500);
+        if (!$user) {
+            return response()->json(['error' => 'User not created'], 500);
         }
 
         return response()->json(['message' => 'User created successfully', 'user' => $validated], 201);
     }
 
-    public function login() {
+    public function login()
+    {
         return 'Login';
     }
 
-    public function logout() {
+    public function logout()
+    {
         return 'Logout';
     }
 }
