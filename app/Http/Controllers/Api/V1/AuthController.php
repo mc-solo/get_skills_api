@@ -25,13 +25,19 @@ class AuthController extends Controller
         // dd($validated );
 
         $user = User::create($validated);
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-        if (!$user) {
-            return response()->json(['error' => 'User not created'], 500);
+        if (!$user || !$token) {
+            return response()->json(['error' => 'Failed to register user :('], 500);
         }
 
-        return response()->json(['message' => 'User created successfully', 'user' => $validated], 201);
+        return response()->json([
+            'message' => 'User created successfully',
+            'user' => $validated,
+            'token' => $token
+        ], 201);
     }
+
 
     public function login()
     {
