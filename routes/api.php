@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Api\V1\CourseController;
 use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\TransactionController;
 
 
 
@@ -22,4 +21,5 @@ Route::prefix('V1')->group(function () {
     // Resources
     Route::apiResource('reviews', ReviewController::class);
     Route::apiResource('courses', CourseController::class);
+    Route::post('transactions/initiate', [TransactionController::class, 'initiatePayment']);
 });
