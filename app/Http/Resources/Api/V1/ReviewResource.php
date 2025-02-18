@@ -19,7 +19,7 @@ class ReviewResource extends JsonResource
             'comment' => $this->comment,
             'user' => [
                 'id' => $this->user->id,
-                'name' => $this->user->name,
+                'name' => $this->user->first_name . ' ' . $this->user->last_name,
             ],
             'course' => $this->course->id,
             'rating' => $this->rating,
