@@ -40,12 +40,12 @@ class CourseFactory extends Factory
 
         return [
             'title'=>Arr::random($courseTitles),
-            'description'=>$this->faker->paragraph(1, true),
+            'description'=>$this->faker->realText(50, true),
             'instructor_id'=>User::inRandomOrder()?->value('id') ?? User::factory(),
             'thumbnail'=>$this->faker->imageUrl(),
             'price'=>$this->faker->numberBetween(100,10000),
             'level'=>$this->faker->randomElement(['beginner', 'intermediate', 'advanced']),
-            'requirements'=>$this->faker->paragraph(),
+            'requirements'=>$this->faker->realText(50),
             'video_url'=>'https://www.youtube.com/watch?v=' . $this->faker->regexify('[A-Za-z0-9]{11}'),
             'tags'=>json_encode([$this->faker->word(), $this->faker->word()]),
         ];
