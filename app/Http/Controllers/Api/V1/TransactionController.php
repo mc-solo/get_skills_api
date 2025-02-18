@@ -1,72 +1,44 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Transaction;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use App\Http\Requests\Api\V1\PaymentRequest;
-
 
 class TransactionController extends Controller
 {
-    public function initiatePayment(PaymentRequest $request){
-
-        // generate a unique transaction reference
-        $tx_ref = 'negade-' . uniqid();
-        // prepare payload for the chapa Api request
-        $transaction = Transaction::create([
-            'amount'=>$request->amount,
-            'first_name'=>$request->first_name,
-            'last_name'=>$request->last_name,
-            'user_id'=>$request->user_id,
-            'phone_number'=>$request->phone_number,
-            'email'=>$request->email,
-            'tx_ref'=>$tx_ref,
-            'currency'=>'ETB',
-            'status'=>'pending',
+    public function initiatePayment(Request $request)
+    {
+        // validate the request data
+        $transactionData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+            'amount' => 'required|numeric|min:1',
+            'user_id' => 'required|exists:users,id',
         ]);
 
-        
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('CHAPA_SECRET_KEY'),
-            'Accept' => 'application/json',
-        ])->post('https://api.chapa.co/v1/hosted/pay', [
-            'public_key' => env('CHAPA_PUBLIC_KEY'),
-            'tx_ref' => $tx_ref,
-            'amount' => $transaction->amount,
-            'currency' => $request->currency,
-            'email' => $transaction->email,
-            'first_name' => $transaction->first_name,
-            'last_name' => $transaction->last_name,
-            'title' => 'Course Enrollment',
-            'description' => 'Payment for course enrollment on Get Skills',
-            'callback_url' => route('chapa.callback'),
-            'return_url' =>env('APP_URL') . '/payment-success',
-            'user_id' => $transaction->user_id,
-            'meta' => [
-                'user_id' => $transaction->user_id,
-                'course_id' => $request->course_id,
-            ],
-        ]);
+        // add additional fields
+        $transactionData['tx_ref'] = 'negade-' . uniqid();
+        $transactionData['currency'] = 'ETB';
+        $transactionData['status'] = 'pending';
 
-        $responseData = $response->json();
-        if ($response->successful()) {
+        try {
+            // Create the transaction
+            $transaction = Transaction::create($transactionData);
+        } catch (\Exception $e) {
+            // Handle any errors that may occur
             return response()->json([
-                'message' => 'Payment initiated successfully',
-                'checkout_url' => $responseData['data']['checkout_url'],
-            ], 200);
-        } else {
-            
-            return response()->json([
-                'message' => 'Payment initiation failed',
-                'error' => $responseData['message'],
-            ], $response->status());
-
+                'message' => 'Error: ' . $e->getMessage()
+            ], 500);
         }
-        
 
+        // Return success response
+        return response()->json([
+            'message' => 'Payment initiated successfully',
+            'transaction' => $transaction
+        ], 201);
     }
-    
-       
 }
