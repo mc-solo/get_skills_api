@@ -29,7 +29,7 @@ class CourseResource extends JsonResource
             'instructor' => $this->whenLoaded('instructor', function(){
                 return [
                     'id' => $this->instructor->id,
-                    'name' => $this->instructor->name,
+                    'name' => $this->instructor->first_name . ' ' . $this->instructor->last_name,
                 ];
             }),
 

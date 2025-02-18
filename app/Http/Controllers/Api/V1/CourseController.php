@@ -16,7 +16,7 @@ class CourseController extends Controller
     * fetches all the courses along with instrcutor[Eager load] and converts it into json format
     */
     public function index(){
-        $courses = Course::with('instructor:id,name')->get();
+        $courses = Course::with('instructor:id,first_name')->get();
         return CourseResource::collection($courses);
     }
 
