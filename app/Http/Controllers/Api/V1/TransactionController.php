@@ -22,8 +22,8 @@ class TransactionController extends Controller
             'user_id'=>$request->user_id,
             'phone_number'=>$request->phone_number,
             'email'=>$request->email,
-            'tx_ref'=>$request->tx_ref,
-            'currency'=>$request->currency,
+            'tx_ref'=>$tx_ref,
+            'currency'=>'ETB',
             'status'=>'pending',
         ]);
 
