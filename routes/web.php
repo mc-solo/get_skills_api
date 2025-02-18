@@ -1,20 +1,24 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/index', function (){
+Route::get('/', function () {
     return response()->json([
         'purpose' => 'backend api',
         'version' => 'V1',
-        'author' => ['
-            "Name" => "Wondwosen Asegid",
-            "Email" => "wondswosen.asegid@gmail.com",
-            "Phone" => "+251911563689",
-            "Github" => "mc-solo"
-        ']
-
-]);
+        'authors' => [
+            [
+                "name" => "Wondwosen Asegid",
+                "email" => "wondwosen.asegid@gmail.com",
+                "phone" => "+251911563689",
+                "github" => "mc-solo"
+            ],
+            [
+                "name" => "Emmanuel Alem",
+                "email" => "emmaalem012@gmail.com",
+                "phone" => "+251904601186",
+                "github" => "Emmanuel-Alem"
+            ]
+        ]
+    ]);
 });
