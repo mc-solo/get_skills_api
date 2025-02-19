@@ -35,6 +35,7 @@ class TransactionController extends Controller
         $transactionData['currency'] = 'ETB';
         $transactionData['status'] = 'pending';
 
+        // dd($transactionData);
         try {
             // create the transaction
             $transaction = Transaction::create($transactionData);
@@ -47,20 +48,22 @@ class TransactionController extends Controller
                 'amount' => $transaction->amount,
                 'currency' => $transaction->currency,
                 'callback_url' => 'http://localhost:8000/api/V1/transactions/callback',
-                'first_name' => $transaction->user->first_name,
-                'last_name' => $transaction->user->last_name,
-                'email' => $transaction->user->email,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
                 'title' => 'Payment for course purchase',
                 'description' => 'Payment for course purchase',
                 'logo' => 'https://chapa.link/asset/images/chapa_swirl.svg',
                 // intentionally omitted return_url
             ];
 
+            // dd($chapaData);
             // send the request to chapa API
             $chapaResponse = Http::withToken(env('CHAPA_SECRET_KEY'))
                 ->post('https://api.chapa.co/v1/transaction/initialize', $chapaData);
 
-
+            // dd($chapaResponse->json()); //works fine
+            
             // handle the response
             if (!$chapaResponse->successful()) {
                 return response()->json([
