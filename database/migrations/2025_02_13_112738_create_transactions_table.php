@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('phone_number');
+            $table->string('phone_number')->nullable();
             $table->string('email');
             $table->string('tx_ref');
             $table->decimal('amount', 10, 2);
