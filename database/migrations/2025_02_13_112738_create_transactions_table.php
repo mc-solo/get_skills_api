@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tx_ref');
             $table->decimal('amount', 10, 2);
             $table->string('currency')->default('ETB');
-            $table->enum('status', ['pending', 'successful', 'failed'])->default('pending');
+            $table->enum('status', ['not started','pending', 'successful', 'failed'])->default('not started');
             $table->timestamps();
         });
     }
