@@ -21,5 +21,5 @@ Route::prefix('V1')->group(function () {
     // Resources
     Route::apiResource('reviews', ReviewController::class);
     Route::apiResource('courses', CourseController::class);
-    Route::post('transactions/initiate', [TransactionController::class, 'initiatePayment']);
+    Route::post('transactions/initiate', [TransactionController::class, 'handlePayment']);
 });
