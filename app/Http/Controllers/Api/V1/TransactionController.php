@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Transaction;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 class TransactionController extends Controller
 {
@@ -17,7 +18,7 @@ class TransactionController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function initiatePayment(Request $request)
+    public function handlePayment(Request $request)
     {
         // validate the request data
         $transactionData = $request->validate([
@@ -37,17 +38,61 @@ class TransactionController extends Controller
         try {
             // create the transaction
             $transaction = Transaction::create($transactionData);
+
+            // prepare request payload for chapa
+
+            $chapaData = [
+                'public_key' => env('CHAPA_PUBLIC_KEY'),
+                'tx_ref' => $transaction->tx_ref,
+                'amount' => $transaction->amount,
+                'currency' => $transaction->currency,
+                'callback_url' => 'http://localhost:8000/api/V1/transactions/callback',
+                'first_name' => $transaction->user->first_name,
+                'last_name' => $transaction->user->last_name,
+                'email' => $transaction->user->email,
+                'title' => 'Payment for course purchase',
+                'description' => 'Payment for course purchase',
+                'logo' => 'https://chapa.link/asset/images/chapa_swirl.svg',
+                // intentionally omitted return_url
+            ];
+
+            // send the request to chapa API
+            $chapaResponse = Http::withToken(env('CHAPA_SECRET_KEY'))
+                ->post('https://api.chapa.co/v1/transaction/initialize', $chapaData);
+
+
+            // handle the response
+            if (!$chapaResponse->successful()) {
+                return response()->json([
+                    'error' => 'Error initiating payment',
+                    'response' => $chapaResponse->body(),
+                ], 500);
+            }
+
+            $responseBody = $chapaResponse->json();
+
+            // save the chekout url based on chapa response
+            if ($responseBody['status'] !== 'success') {
+                return response()->json([
+                    'error' => $responseBody['message'],
+                ], 500);
+            }
+
+            // get chapa checkout url
+            $checkout_url = $responseBody['data']['checkout_url'];
+
+            return response()->json([
+                'message' => 'Payment initiated successfully',
+                'transaction' => $transaction,
+                'checkout_url' => $checkout_url  // i will use this to redirect the user [frontend]
+            ], 201);
+
+
         } catch (\Exception $e) {
-            // handle any errors that may occur
             return response()->json([
                 'message' => 'Error: ' . $e->getMessage()
             ], 500);
         }
 
-        // return success response
-        return response()->json([
-            'message' => 'Payment initiated successfully',
-            'transaction' => $transaction
-        ], 201);
     }
 }
