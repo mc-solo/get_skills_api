@@ -26,15 +26,15 @@
 
 ## 🔧 Tech Stack
 
-- **Backend**: Laravel – The backbone of our platform, providing a solid and secure foundation for everything.
+- **Backend**: [Php] Laravel
   
-- **Frontend**: Tailwind CSS – For crafting a sleek and modern UI that’s both responsive and customizable.
+- **Frontend**: Next Js, Tailwind Css
 
 - **Database**: MySQL – Storing everything from user data to course content and feedback, all in a relational database that handles it with ease.
 
-- **Authentication**: Laravel Breeze with Google & GitHub OAuth – Secure, simple login for a smooth user experience.
+- **Authentication**: Laravel Sanctum on the backend and prolly Better Auth on Next Js
 
-- **Future Mobile**: We're working on mobile apps to make learning on-the-go a breeze. Stay tuned!
+- **Future Mobile**: Flutter [not started yet]
 
 - **Real-time Features**: (Coming soon) Live discussions, instant messaging, and more to make learning interactive and collaborative.
 
