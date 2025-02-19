@@ -22,3 +22,8 @@ Route::get('/', function () {
         ]
     ]);
 });
+
+Route::get('/test-payment', function(){
+    $tx_ref = 'negade-'.uniqid();
+    return view('index', compact('tx_ref'));
+});
