@@ -84,6 +84,9 @@ class TransactionController extends Controller
             // get chapa checkout url
             $checkout_url = $responseBody['data']['checkout_url'];
 
+            // todo: impmement status update on user transaction [after auth is impmented on the frontend]
+            // $updated = $transaction->user->update(['status' => 'pending']);
+            // dd($updated);
             return response()->json([
                 'message' => 'Payment initiated successfully',
                 'transaction' => $transaction,
