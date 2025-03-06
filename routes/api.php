@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\V1\TransactionController;
 
 
 
-Route::prefix('V1')->group(function () {
+Route::prefix('v1')->group(function () {
     // Public routes
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
