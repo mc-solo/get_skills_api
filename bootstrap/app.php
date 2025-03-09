@@ -14,8 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'auth:sanctum' =>\Illuminate\Auth\Middleware\Authenticate::class,
             \Illuminate\Http\Middleware\HandleCors::class,
+            'auth:sanctum' =>\Illuminate\Auth\Middleware\Authenticate::class,
         ]);
 
         $middleware->append(EnsureFrontendRequestsAreStateful::class);
