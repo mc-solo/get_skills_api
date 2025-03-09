@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth:sanctum' =>\Illuminate\Auth\Middleware\Authenticate::class,
         ]);
 
-        $middleware->append(EnsureFrontendRequestsAreStateful::class);
+        $middleware->prepend(EnsureFrontendRequestsAreStateful::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
