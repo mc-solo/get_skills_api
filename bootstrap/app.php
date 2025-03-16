@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
+            \App\Http\Middleware\CorsMiddleware::class,
             \Illuminate\Http\Middleware\HandleCors::class,
             'auth:sanctum' =>\Illuminate\Auth\Middleware\Authenticate::class,
         ]);
